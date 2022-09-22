@@ -64,20 +64,25 @@ export default function CustomGlobe() {
   const arcsData = [...Array(N).keys()].map(() => ({
     startLat: -25.874938,
     startLng: 28.193628,
-    endLat: (Math.random() - 0.5) * 180,
-    endLng: (Math.random() - 0.5) * 360,
     color: "white"
   }));
+  
+  for(let i = 0; i < N; i++){
+    let selectCountry = COUNTRIES_DATA[Math.floor(Math.random()*(COUNTRIES_DATA.length - 1))];
+    arcsData[i].endLat = selectCountry.latitude;
+    arcsData[i].endLng = selectCountry.longitude;
+  }
 
   return (
     <Globe
+    globeImageUrl={"//newsite.factsa.co.za/wp-content/uploads/2022/09/water.png"}
       ref={globeEl}
-      backgroundColor="#000"
+      backgroundColor="rgba(52, 52, 52, 0)"
       labelsData={[selectedCountry]}
       arcsData={arcsData}
-      arcDashLength={1}
+      arcDashLength={0.5}
       arcDashGap={Math.random()}
-      arcDashAnimateTime={5000}
+      arcDashAnimateTime={15000}
       arcColor={"color"}
       labelText={"label"}
       labelSize={1.6}
@@ -87,7 +92,7 @@ export default function CustomGlobe() {
       hexPolygonsData={hex.features}
       hexPolygonResolution={3} //values higher than 3 makes it buggy
       hexPolygonMargin={0.62}
-      color={"#3459a9"}
+      color={"#fff"}
       hexPolygonColor={useCallback(() => "#3459a9", [])}
     />
   );
