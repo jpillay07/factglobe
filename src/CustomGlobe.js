@@ -45,8 +45,11 @@ export default function CustomGlobe() {
   useEffect(() => {
     globeEl.current.controls().autoRotate = true;
     globeEl.current.controls().autoRotateSpeed = 0.9;
+    
+    globeEl.current.controls().enableZoom = false;
+    globeEl.current.camera().zoom = 0.75;
 
-    const MAP_CENTER = { lat: 0, lng: 0, altitude: 2.5 };
+    const MAP_CENTER = { lat: 0, lng: 0, altitude: 1 };
     globeEl.current.pointOfView(MAP_CENTER, 0);
   }, [globeEl]);
 
@@ -84,6 +87,7 @@ export default function CustomGlobe() {
       arcDashGap={Math.random()}
       arcDashAnimateTime={15000}
       arcColor={"color"}
+      enableZoom={false}
       labelText={"label"}
       labelSize={1.6}
       labelColor={useCallback(() => "white", [])}
