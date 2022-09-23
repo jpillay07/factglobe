@@ -45,8 +45,11 @@ export default function CustomGlobe() {
   useEffect(() => {
     globeEl.current.controls().autoRotate = true;
     globeEl.current.controls().autoRotateSpeed = 0.9;
+    
+    globeEl.current.controls().enableZoom = false;
+    globeEl.current.camera().zoom = 0.75;
 
-    const MAP_CENTER = { lat: 0, lng: 0, altitude: 2.5 };
+    const MAP_CENTER = { lat: 0, lng: 0, altitude: 1 };
     globeEl.current.pointOfView(MAP_CENTER, 0);
   }, [globeEl]);
 
@@ -64,21 +67,27 @@ export default function CustomGlobe() {
   const arcsData = [...Array(N).keys()].map(() => ({
     startLat: -25.874938,
     startLng: 28.193628,
-    endLat: (Math.random() - 0.5) * 180,
-    endLng: (Math.random() - 0.5) * 360,
     color: "white"
   }));
+  
+  for(let i = 0; i < N; i++){
+    let selectCountry = COUNTRIES_DATA[Math.floor(Math.random()*(COUNTRIES_DATA.length - 1))];
+    arcsData[i].endLat = selectCountry.latitude;
+    arcsData[i].endLng = selectCountry.longitude;
+  }
 
   return (
     <Globe
+      globeImageUrl={"https://raw.githubusercontent.com/jpillay07/factglobe/main/public/factdarkb.jpg"}
       ref={globeEl}
-      backgroundColor="#000"
+      backgroundColor="rgba(52, 52, 52, 0)"
       labelsData={[selectedCountry]}
       arcsData={arcsData}
-      arcDashLength={1}
+      arcDashLength={0.5}
       arcDashGap={Math.random()}
-      arcDashAnimateTime={5000}
+      arcDashAnimateTime={15000}
       arcColor={"color"}
+      enableZoom={false}
       labelText={"label"}
       labelSize={1.6}
       labelColor={useCallback(() => "white", [])}
@@ -87,8 +96,8 @@ export default function CustomGlobe() {
       hexPolygonsData={hex.features}
       hexPolygonResolution={3} //values higher than 3 makes it buggy
       hexPolygonMargin={0.62}
-      color={"#3459a9"}
-      hexPolygonColor={useCallback(() => "#3459a9", [])}
+      color={"#fff"}
+      hexPolygonColor={useCallback(() => "#5683e5", [])}
     />
   );
 }
