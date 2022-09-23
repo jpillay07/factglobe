@@ -75,7 +75,7 @@ export default function CustomGlobe() {
 
   return (
     <Globe
-    globeImageUrl={"//newsite.factsa.co.za/wp-content/uploads/2022/09/water.png"}
+      globeImageUrl={"https://raw.githubusercontent.com/jpillay07/factglobe/main/public/factdarkb.jpg"}
       ref={globeEl}
       backgroundColor="rgba(52, 52, 52, 0)"
       labelsData={[selectedCountry]}
@@ -93,7 +93,7 @@ export default function CustomGlobe() {
       hexPolygonResolution={3} //values higher than 3 makes it buggy
       hexPolygonMargin={0.62}
       color={"#fff"}
-      hexPolygonColor={useCallback(() => "#3459a9", [])}
+      hexPolygonColor={useCallback(() => "#5683e5", [])}
     />
   );
 }
