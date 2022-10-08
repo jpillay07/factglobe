@@ -20,7 +20,11 @@ export class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <h1>Image Here</h1>;
+      return (
+        <div>
+          <img src="src/assets/Globe.png"></img>
+        </div>
+      );
     }
     return this.props.children;
   }
