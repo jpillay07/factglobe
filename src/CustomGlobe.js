@@ -42,6 +42,7 @@ export default function CustomGlobe() {
     globeEl.current.controls().autoRotateSpeed = 0.9;
 
     globeEl.current.controls().enableZoom = false;
+
     globeEl.current.camera().zoom = 0.75;
 
     const MAP_CENTER = { lat: 0, lng: 0, altitude: 1 };
